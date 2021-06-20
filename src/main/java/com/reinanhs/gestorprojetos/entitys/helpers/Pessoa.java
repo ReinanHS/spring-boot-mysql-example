@@ -1,5 +1,6 @@
 package com.reinanhs.gestorprojetos.entitys.helpers;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.reinanhs.gestorprojetos.entitys.Entidade;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @MappedSuperclass
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Pessoa extends Entidade {
     @Column(nullable = false, length = 80)
     @Size(min = 2, max = 80, message = "O tamanho inserido para o nome é inválido")
@@ -40,7 +42,7 @@ public class Pessoa extends Entidade {
     @NotNull(message = "O campo data de nascimento é obrigatório")
     protected LocalDate dataNascimento;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id_fk", nullable = false)
     @NotNull(message = "O campo endereco é obrigatório")
     protected Endereco endereco;

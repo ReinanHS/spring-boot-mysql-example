@@ -26,4 +26,9 @@ public class ClienteCntroller {
     public Cliente store(@Valid @RequestBody Cliente cliente){
         return this.clienteRepository.save(cliente);
     }
+
+    @GetMapping(path = "/{id}")
+    public Cliente show(@PathVariable Long id){
+        return this.clienteRepository.getById(id);
+    }
 }
