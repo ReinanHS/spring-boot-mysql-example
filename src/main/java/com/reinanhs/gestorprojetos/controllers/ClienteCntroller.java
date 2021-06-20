@@ -31,4 +31,10 @@ public class ClienteCntroller {
     public Cliente show(@PathVariable Long id){
         return this.clienteRepository.getById(id);
     }
+
+    @PutMapping(path = "/{id}")
+    public Cliente update(@Valid @RequestBody Cliente cliente, @PathVariable Long id){
+        cliente.setId(id);
+        return this.clienteRepository.save(cliente);
+    }
 }
