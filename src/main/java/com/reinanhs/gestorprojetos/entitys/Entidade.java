@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity
 @Data
 @MappedSuperclass
 public class Entidade {

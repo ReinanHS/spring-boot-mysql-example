@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity
 @Data
 @MappedSuperclass
 public class Pessoa extends Entidade {
