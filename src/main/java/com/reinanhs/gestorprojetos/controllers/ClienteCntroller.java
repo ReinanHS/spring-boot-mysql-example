@@ -2,6 +2,7 @@ package com.reinanhs.gestorprojetos.controllers;
 
 import com.reinanhs.gestorprojetos.entitys.cliente.Cliente;
 import com.reinanhs.gestorprojetos.repositorys.ClienteRepository;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +37,15 @@ public class ClienteCntroller {
     public Cliente update(@Valid @RequestBody Cliente cliente, @PathVariable Long id){
         cliente.setId(id);
         return this.clienteRepository.save(cliente);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<JSONObject> destroy(@PathVariable Long id){
+        this.clienteRepository.deleteById(id);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.appendField("mensagem", "O objeto foi deletado com sucesso");
+
+        return ResponseEntity.status(HttpStatus.OK).body(jsonObject);
     }
 }
