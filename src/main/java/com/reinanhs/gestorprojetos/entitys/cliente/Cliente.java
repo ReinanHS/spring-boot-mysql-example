@@ -1,5 +1,6 @@
 package com.reinanhs.gestorprojetos.entitys.cliente;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.reinanhs.gestorprojetos.entitys.helpers.Pessoa;
 import com.reinanhs.gestorprojetos.entitys.projeto.Projeto;
 import lombok.Data;
@@ -15,5 +16,6 @@ import java.util.List;
 @Data
 public class Cliente extends Pessoa {
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @JsonIgnore
     protected List<Projeto> projetos;
 }

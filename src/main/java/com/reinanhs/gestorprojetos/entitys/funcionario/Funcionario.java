@@ -1,5 +1,6 @@
 package com.reinanhs.gestorprojetos.entitys.funcionario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.reinanhs.gestorprojetos.entitys.cargo.Cargo;
 import com.reinanhs.gestorprojetos.entitys.helpers.Pessoa;
 import com.reinanhs.gestorprojetos.entitys.projeto.Projeto;
@@ -31,5 +32,6 @@ public class Funcionario extends Pessoa {
     protected Cargo cargo;
 
     @ManyToMany(mappedBy = "equipe", fetch = FetchType.LAZY)
+    @JsonIgnore
     protected List<Projeto> projetos;
 }

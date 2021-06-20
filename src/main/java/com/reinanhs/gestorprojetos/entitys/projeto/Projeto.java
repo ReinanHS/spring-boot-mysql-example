@@ -10,6 +10,7 @@ import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -31,7 +32,7 @@ public class Projeto extends Entidade {
 
     @Column(nullable = false, name = "data_inicio")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @NotBlank(message = "O campo data inicio é obrigatório")
+    @NotNull(message = "O campo data inicio é obrigatório")
     protected LocalDate dataInicio;
 
     @Column(name = "data_fim")
@@ -40,24 +41,25 @@ public class Projeto extends Entidade {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id_fk", nullable = false)
-    @NotBlank(message = "O campo cliente é obrigatório")
+    @NotNull(message = "O campo cliente é obrigatório")
     protected Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "lider_id_fk", nullable = false)
-    @NotBlank(message = "O campo lider é obrigatório")
+    @NotNull(message = "O campo lider é obrigatório")
     protected Funcionario lider;
 
     @Column(nullable = false)
     @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "##,#0.00")
-    @NotBlank(message = "O campo orcamento é obrigatório")
+    @NotNull(message = "O campo orcamento é obrigatório")
     protected BigDecimal orcamento;
 
     @Column(nullable = false)
     @NumberFormat(style = NumberFormat.Style.CURRENCY, pattern = "##,#0.00")
-    @NotBlank(message = "O campo gastos é obrigatório")
+    @NotNull(message = "O campo gastos é obrigatório")
     protected BigDecimal gastos;
 
+    @NotNull(message = "O campo equipe é obrigatório")
     @ManyToMany
     @JoinTable(
             name = "projeto_funcionario",
