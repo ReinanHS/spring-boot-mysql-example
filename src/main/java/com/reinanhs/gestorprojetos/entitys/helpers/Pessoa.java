@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -36,10 +37,11 @@ public class Pessoa extends Entidade {
 
     @Column(nullable = false, name = "data_nascimento")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @NotBlank(message = "O campo data de nascimento é obrigatório")
+    @NotNull(message = "O campo data de nascimento é obrigatório")
     protected LocalDate dataNascimento;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id_fk", nullable = false)
+    @NotNull(message = "O campo endereco é obrigatório")
     protected Endereco endereco;
 }

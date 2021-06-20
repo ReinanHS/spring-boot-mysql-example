@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @EqualsAndHashCode(callSuper = true)
@@ -18,7 +19,7 @@ import javax.validation.constraints.Size;
 public class Endereco extends Entidade {
     @Column(nullable = false, length = 2)
     @Enumerated(EnumType.STRING)
-    @NotBlank(message = "O campo uf é obrigatório")
+    @NotNull(message = "O campo uf é obrigatório")
     protected UF uf;
 
     @Column(nullable = false, length = 80)
