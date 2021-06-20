@@ -3,9 +3,9 @@ package com.reinanhs.gestorprojetos.entitys.helpers;
 import com.reinanhs.gestorprojetos.entitys.Entidade;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -36,6 +36,7 @@ public class Pessoa extends Entidade {
     protected String email;
 
     @Column(nullable = false, name = "data_nascimento")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotBlank(message = "O campo data de nascimento é obrigatório")
     protected LocalDate dataNascimento;
 }
