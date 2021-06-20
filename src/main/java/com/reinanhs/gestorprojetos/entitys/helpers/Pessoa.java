@@ -5,8 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -39,4 +38,8 @@ public class Pessoa extends Entidade {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotBlank(message = "O campo data de nascimento é obrigatório")
     protected LocalDate dataNascimento;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id_fk", nullable = false)
+    protected Endereco endereco;
 }
